@@ -31,7 +31,7 @@ export default DeckerItem = ({item, navigation}) => {
     return (
         <TouchableOpacity 
         style={styles.cardBox}
-        onPress={() => navigation.navigate('DeckDetails')}
+        onPress={() => navigation.navigate('DeckDetails', { 'deck': item.title })}
         >
             <Text style={styles.title}>{item.title}</Text>
             <Text style={styles.count}>{item.questions.length} Cards</Text>

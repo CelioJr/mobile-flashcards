@@ -8,9 +8,6 @@ import DeckItem from '../components/DeckItem';
 
 class DecksScreen extends Component {
   
-  static navigationOptions = {
-    header: null
-  }
   componentDidMount(){
     this.props.getDecks()
   }
