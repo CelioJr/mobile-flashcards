@@ -3,13 +3,13 @@ import { View } from 'react-native'
 import { FlatList } from 'react-native-gesture-handler';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { getDecks } from '../actions'
+import { fetchAllDecks } from '../actions'
 import DeckItem from '../components/DeckItem';
 
 class DecksScreen extends Component {
   
   componentDidMount(){
-    this.props.getDecks()
+    this.props.fetchAllDecks()
   }
 
   _keyExtractor = (item, index) => index.toString();
@@ -42,7 +42,7 @@ function mapStateToProps(state){
 }
 
 function mapDispatchToProps(dispatch){
-    return bindActionCreators({ getDecks }, dispatch)
+    return bindActionCreators({ fetchAllDecks }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DecksScreen)

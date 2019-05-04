@@ -31,7 +31,7 @@ const initData = {
     }
   }
 
- export const fecthAllDecks = async () => {
+ export const getDecks = async () => {
     try{
         const result = await AsyncStorage.getItem(STORAGE_KEY)
         if(result !== null){
@@ -46,3 +46,22 @@ const initData = {
 
     }
   } 
+
+  export const getDeck = async (deckName) => {
+    const decks = await getDecks()
+    return decks[deckName]
+  }
+
+  export const addCardToDeck = async (deckName, card) => {
+    const decks = await getDecks(deckName)
+    console.log('deckname',deckName)
+    console.log(decks[deckName])
+    decks[deckName].questions.push(card)
+    AsyncStorage.mergeItem(STORAGE_KEY, JSON.stringify(decks))
+  }
+
+  export const saveDeckTitle = (title) => {
+      return AsyncStorage.mergeItem(STORAGE_KEY, JSON.stringify({
+        [title]: {title, questions: []}
+      }));
+  }

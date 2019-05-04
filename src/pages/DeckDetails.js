@@ -44,11 +44,10 @@ class DeckDetails extends Component {
       Animated.spring(bounce, { toValue: 1, friction: 4})
     ]).start()
   }
-
   
   render() {
 
-    const { deck } = this.props;
+    const { deck, navigation } = this.props;
     const { bounce } = this.state;
 
     return (
@@ -59,8 +58,17 @@ class DeckDetails extends Component {
               {deck.title}
             </Animated.Text>
             <Text style={styles.count}>{deck.questions.length} Cards</Text>
-          <ButtonCust style={{marginBottom: 30}}>Add Card</ButtonCust>
-          <ButtonCust>Start Quiz</ButtonCust>
+          <ButtonCust 
+            style={{marginBottom: 30}}
+            onPress={() => navigation.navigate('AddCard', {'deckName': deck.title })}
+            >
+              Add Card
+            </ButtonCust>
+          <ButtonCust
+            onPress={() => console.log('press work22')}
+            >
+            Start Quiz
+          </ButtonCust>
       </View>
     )
   }

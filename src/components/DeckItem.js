@@ -28,13 +28,17 @@ const styles = StyleSheet.create({
 })
 
 export default DeckerItem = ({item, navigation}) => {
+    const count = item.questions.length !== null 
+        ? item.questions.length
+        : 0
+
     return (
         <TouchableOpacity 
         style={styles.cardBox}
         onPress={() => navigation.navigate('DeckDetails', { 'deck': item.title })}
         >
             <Text style={styles.title}>{item.title}</Text>
-            <Text style={styles.count}>{item.questions.length} Cards</Text>
+            <Text style={styles.count}>{count} Cards</Text>
         </TouchableOpacity>
     )
 }

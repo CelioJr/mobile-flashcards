@@ -21,10 +21,13 @@ const styles = StyleSheet.create({
 
 export default class ButtonCust extends Component {
   render() {
-    const { style = {} } = this.props
+    const { style = {}, onPress, disabled, ...otherProps } = this.props
 
     return (
         <TouchableOpacity
+          onPress={onPress}
+          activeOpacity={disabled ? 1 : 0.7}
+          {...otherProps}
           style={[styles.button, style]}
         >
             <Text style={styles.text}>{this.props.children}</Text>

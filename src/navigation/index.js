@@ -3,20 +3,20 @@ import { createStackNavigator, createAppContainer, createMaterialTopTabNavigator
 import { white, cyan } from '../utils/colors'
 import DecksScreen from '../pages/DecksScreen'
 import DeckDetails from '../pages/DeckDetails'
+import AddCard from '../pages/AddCard'
+import CreateDeck from '../pages/CreateDeck'
 
  const RouteConfigs = {
     DecksList: {
       screen: DecksScreen,
       navigationOptions: {
         tabBarLabel: "DECKS",
-        tabBarIcon: ({ tintColor }) => <Ionicons name='ios-bookmarks' size={30} color={tintColor} />
       }
     },
-    NewDeck: {
-      screen: DecksScreen,
+    CreateDeck: {
+      screen: CreateDeck,
       navigationOptions: {
-        tabBarLabel: "NEW DECKS",
-        tabBarIcon: ({ tintColor }) => <Ionicons name='ios-bookmarks' size={30} color={tintColor} />
+        tabBarLabel: "NEW DECK",
       }
     },
     
@@ -47,7 +47,8 @@ import DeckDetails from '../pages/DeckDetails'
   const HomeStack = createStackNavigator(
     {
       Home: Tabs,
-      DeckDetails: DeckDetails
+      DeckDetails: DeckDetails,
+      AddCard: AddCard
     },
     {
       initialRouteName: "Home",
