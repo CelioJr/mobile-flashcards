@@ -19,7 +19,6 @@ class DecksScreen extends Component {
   )
 
   render() {
-
     const { decks } = this.props;
 
     return (

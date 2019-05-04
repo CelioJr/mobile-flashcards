@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Text, View, StyleSheet, Animated } from 'react-native'
 import {connect} from 'react-redux'
-import { cyan } from '../utils/colors'
+import { cyan, light_gray } from '../utils/colors'
 import ButtonCust from '../components/ButtonCust'
 
 const styles = StyleSheet.create({
@@ -49,6 +49,11 @@ class DeckDetails extends Component {
 
     const { deck, navigation } = this.props;
     const { bounce } = this.state;
+    let disabled = true;
+
+    if(deck.questions.length > 0) {
+      disabled = false
+    }
 
     return (
       <View style={styles.container}>
@@ -65,7 +70,9 @@ class DeckDetails extends Component {
               Add Card
             </ButtonCust>
           <ButtonCust
-            onPress={() => console.log('press work22')}
+            disabled={disabled}
+            style={disabled ? { backgroundColor: light_gray } : { backgroundColor: cyan }}
+            onPress={() => !disabled && navigation.navigate('StartQuiz', {'deckName': deck.title})}
             >
             Start Quiz
           </ButtonCust>

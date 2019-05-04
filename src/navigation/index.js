@@ -5,6 +5,7 @@ import DecksScreen from '../pages/DecksScreen'
 import DeckDetails from '../pages/DeckDetails'
 import AddCard from '../pages/AddCard'
 import CreateDeck from '../pages/CreateDeck'
+import StartQuiz from '../pages/StartQuiz'
 
  const RouteConfigs = {
     DecksList: {
@@ -48,7 +49,8 @@ import CreateDeck from '../pages/CreateDeck'
     {
       Home: Tabs,
       DeckDetails: DeckDetails,
-      AddCard: AddCard
+      AddCard: AddCard,
+      StartQuiz: StartQuiz
     },
     {
       initialRouteName: "Home",
