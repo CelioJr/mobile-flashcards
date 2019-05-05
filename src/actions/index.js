@@ -18,14 +18,13 @@ export function fetchAllDecks() {
 
 export function addNewCard(deckName, question){
     return (dispatch) => {
+        dispatch({
+            type: ADD_NEW_CARD,
+            deckName,
+            question
+        })
+
         addCardToDeck(deckName, question)
-            .then(() => {
-                dispatch({
-                    type: ADD_NEW_CARD,
-                    deckName,
-                    question
-                })
-            })
     }
 }
 

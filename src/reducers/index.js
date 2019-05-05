@@ -6,11 +6,12 @@ function decks (state = {}, action) {
     case FECTH_ALL_DECKS:
       return action.decks
     case ADD_NEW_CARD: 
+
       return {
         ...state,
         [action.deckName]: {
           ...state[action.deckName],
-          questions: [...state[action.deckName].questions, action.card]
+          questions: [...state[action.deckName].questions, {...action.question}]
         }
       }
     case SAVE_DECK: 
