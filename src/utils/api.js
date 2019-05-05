@@ -54,8 +54,6 @@ const initData = {
 
   export const addCardToDeck = async (deckName, card) => {
     const decks = await getDecks(deckName)
-    console.log('deckname',deckName)
-    console.log(decks[deckName])
     decks[deckName].questions.push(card)
     AsyncStorage.mergeItem(STORAGE_KEY, JSON.stringify(decks))
   }

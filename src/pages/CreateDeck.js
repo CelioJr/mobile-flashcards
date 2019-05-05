@@ -25,7 +25,6 @@ class CreateDeck extends Component {
     const { title } = this.state
     const { saveDeck, navigation } = this.props
 
-    console.log('ttitle:', title)
     saveDeck(title)
    
     navigation.navigate('DeckDetails', { 'deck': title })

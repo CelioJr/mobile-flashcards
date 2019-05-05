@@ -227,7 +227,6 @@ class StartQuiz extends Component {
 
 function mapStateToProps(state, { navigation }) {
   const deckName = navigation.getParam('deckName')
-  console.log('deckName', deckName)
 
   return {
     questions: state[deckName].questions
