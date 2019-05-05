@@ -83,6 +83,32 @@ const Card = ({ text, type, onPress }) => {
   )
 }
 
+const Result = ({ correctAnswer, numberQuestions, onRestartQuiz, onGoBack }) => {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text
+        style={{ fontSize: 30, color: cyan }}
+      >
+        Your score is {(correctAnswer / numberQuestions) * 100}%
+      </Text>
+      <View style={{ flexDirection: 'row', marginTop: 20 }}>
+        <ButtonCust
+          style={{ paddingHorizontal: 20, marginLeft: 10, backgroundColor: cyan }}
+          onPress={onRestartQuiz}
+        >
+          Restart Quiz
+        </ButtonCust>
+        <ButtonCust
+          style={{ paddingHorizontal: 30, marginLeft: 10, backgroundColor: light_gray }}
+          onPress={onGoBack}
+        >
+          Back to Deck
+        </ButtonCust>
+      </View>
+    </View>
+  )
+}
+
 class StartQuiz extends Component {
 
   static navigationOptions = {
@@ -109,35 +135,59 @@ class StartQuiz extends Component {
   handleResponse = (response) => {
     let { currentQuestion, correctAnswer, showResult, type } = this.state
     const { questions } = this.props
-    
+
     type = types.QUESTION
     currentQuestion++
 
-    if(response === answers.CORRECT){
+    if (response === answers.CORRECT) {
       correctAnswer++
-      currentQuestion === questions.length - 1 
-        ? showResult = true
-        : showResult = false
     }
+
+    currentQuestion >= questions.length
+      ? showResult = true
+      : showResult = false
 
     this.setState({
       currentQuestion,
       correctAnswer,
-      showResult, 
+      showResult,
       type
     })
   }
 
+  restartQuiz = () => {
+    this.setState({
+      currentQuestion: 0,
+      correctAnswer: 0,
+      showResult: false,
+      type: types.QUESTION
+    })
+  }
+
+  goBack = () => {
+    const { navigation } = this.props
+
+    navigation.goBack();
+  }
+
   render() {
-    const { currentQuestion, type, correctAnswer } = this.state
+    const { currentQuestion, type, showResult, correctAnswer } = this.state
     const { questions } = this.props
     let disabled = true
     const questionCard = questions[currentQuestion]
 
     type === types.ANSWER && (disabled = false)
 
-
-    console.log(questionCard);
+    if (showResult === true) {
+      return (
+        <Result 
+          correctAnswer={correctAnswer} 
+          numberQuestions={questions.length}
+          onRestartQuiz={this.restartQuiz} 
+          onGoBack={this.goBack}
+          />
+      )
+    }
 
     return (
       <View style={{ flex: 1 }}>
