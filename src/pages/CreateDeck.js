@@ -46,6 +46,7 @@ class CreateDeck extends Component {
         <TextInputCust
           style={{fontSize: 20}}
           placeholder='What is the title of your new deck ?'
+          value={title}
           onChangeText={(title) => this.setState({title})}
         />
         <ButtonCust
