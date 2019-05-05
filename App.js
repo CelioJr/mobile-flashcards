@@ -8,10 +8,15 @@ import ReduxThunk from 'redux-thunk';
 import CardsBar from './src/components/CardsBar'
 import { cyan } from './src/utils/colors'
 import MainNavigator from './src/navigation'
+import { setLocalNotification } from './src/utils/helpers'
 
 
 const store = createStore(reducer, {}, applyMiddleware(ReduxThunk));
 export default class App extends React.Component {
+  
+  componentDidMount(){
+    setLocalNotification()
+  }
   
   render() {
     return (

@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { cyan, white, green, red, light_gray } from '../utils/colors'
 import ButtonCust from '../components/ButtonCust'
+import { setLocalNotification, clearLocalNotification } from '../utils/helpers'
 
 
 const types = {
@@ -143,9 +144,11 @@ class StartQuiz extends Component {
       correctAnswer++
     }
 
-    currentQuestion >= questions.length
-      ? showResult = true
-      : showResult = false
+    if(currentQuestion >= questions.length){
+      showResult = true
+      clearLocalNotification()
+        .then(setLocalNotification)
+    }
 
     this.setState({
       currentQuestion,
